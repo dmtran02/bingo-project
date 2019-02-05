@@ -11,7 +11,14 @@ namespace Bingo.Class
         public const int BINGOSIZE = 5;
         public bool[,] bingoBoard = { { false, false, false, false, false }, { false, false, false, false, false }, { false, false, false, false, false }, { false, false, false, false, false }, { false, false, false, false, false } };
 
-        public void isWinner(int row, int col)
+        public static int isWinner(int row, int col)
+        {
+            int result = 0;
+
+            return result;
+        }
+
+        public static void recordCalledNumber(int row, int col)
         {
 
         }

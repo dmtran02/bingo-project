@@ -21,6 +21,9 @@ namespace Bingo
 {
     public partial class Form1 : Form
     {
+
+        public char[] bingoLetters = { 'B', 'I', 'N', 'G', 'O' };
+
         public Form1()
         {
             InitializeComponent();
@@ -217,40 +220,52 @@ namespace Bingo
         {
             int bingoCount2D;
             int bingoCountWO2D; int selectedNumber;  // number randomly selected
-/*
+
             int rowID = convertCharToInt(((Button)sender).Name[3]);
             int colID = convertCharToInt(((Button)sender).Name[4]);
             MessageBox.Show("Cell[" + rowID + "," + colID + "] has been selected!");
             int cellID = rowID * 3 + colID;
 
             // Double check that clicked on button value matches called value
+            Random random = new Random();
+            int randomIndex = random.Next(0, 4);
             selectedNumber = Convert.ToInt32(newButton[rowID, colID].Text);
+            Console.WriteLine(txtRNG.Text);
+            int nextCalledNumber = Convert.ToInt32(txtRNG.Text.Substring(1));
+
             if (selectedNumber == nextCalledNumber)
             {
                 newButton[rowID, colID].BackColor = System.Drawing.Color.Orange;
-                internalCardRep2DArray.recordCalledNumber(rowID, colID);
-                internalCardRepWO2DArray.recordCalledNumber(rowID, colID);
+                InternalCardRep2DArray.recordCalledNumber(rowID, colID);
+                //internalCardRepWO2DArray.recordCalledNumber(rowID, colID);
                 Globals.selectedNumbersListObj.setUsedNumber(selectedNumber);
 
                 // Check for winner
                 // Go here if player found the number called in his or her card
                 // Check for winner for either internal representation
-                bingoCount2D = internalCardRep2DArray.isWinner(rowID, colID);
-                bingoCountWO2D = internalCardRepWO2DArray.isWinner(rowID, colID);
-                if ((bingoCount2D > 0) && (bingoCountWO2D > 0))
+                bingoCount2D = InternalCardRep2DArray.isWinner(rowID, colID);
+                //bingoCountWO2D = internalCardRepWO2DArray.isWinner(rowID, colID);
+                if ((bingoCount2D > 0) /*&& (bingoCountWO2D > 0)*/)
                 {
                     MessageBox.Show("You are a Winner!!", "Winner Found! \n"
-                        + "Bingos count = " + (bingoCount2D + bingoCountWO2D) / 2 + ". Game over!");
+                        + "Bingos count = " + bingoCount2D  + ". Game over!");
                     Close();
                 }  // end inner if
 
-                playTheGame();
+                //playTheGame();
             }
             else
             {
                 MessageBox.Show("Called number does not match the one in the box you selected." + "Try again!", "Numbers Do Not Match");
             } // end outer if*/
         } // end button clickhandler
-        
+
+        public int convertCharToInt(char character)
+        {
+            string holder = character.ToString();
+            int result = int.Parse(holder);
+
+            return result;
+        }
     }
 }

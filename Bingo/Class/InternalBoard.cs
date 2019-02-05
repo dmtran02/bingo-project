@@ -8,6 +8,11 @@ namespace Bingo.Class
 {
     class InternalBoard
     {
-        
+        public static int convertCharToInt(char character)
+        {
+            int result = 0;
+
+            return result;
+        }
     }
 }
