@@ -36,13 +36,15 @@ namespace Bingo
             else
             {
                 MessageBox.Show("Welcome " + txtName.Text + "!", "Welcome!");
+                Player player = new Player(txtName.Text);
                 btnYes.Visible = false;
                 lblReady.Visible = false;
                 btnNo.Text = "E&xit";
                 txtName.ReadOnly = true;
                 lblBingoCardTitle.Visible = true;
                 createCard();
-    
+                Console.WriteLine("Welcome the new player, " + player.name);
+
             }
         }
 
@@ -127,7 +129,7 @@ namespace Bingo
                     newButton[row, col].Name = "btn" + row.ToString() + col.ToString();
 
                     // Associates the same event handler with each of the buttons generated
-                    //newButton[row, col].Click += new EventHandler(Button_Click);
+                    newButton[row, col].Click += new EventHandler(Button_Click);
 
                     // Add button to the form
                     pnlCard.Controls.Add(newButton[row, col]);
@@ -211,11 +213,11 @@ namespace Bingo
         // It uses sender argument to determine which Bingo Card button was selected
         // The argument is of type object and must be converted to type button in
         //    order to change its properties
-        /*private void Button_Click(object sender, EventArgs e)
+        private void Button_Click(object sender, EventArgs e)
         {
             int bingoCount2D;
             int bingoCountWO2D; int selectedNumber;  // number randomly selected
-
+/*
             int rowID = convertCharToInt(((Button)sender).Name[3]);
             int colID = convertCharToInt(((Button)sender).Name[4]);
             MessageBox.Show("Cell[" + rowID + "," + colID + "] has been selected!");
@@ -247,8 +249,8 @@ namespace Bingo
             else
             {
                 MessageBox.Show("Called number does not match the one in the box you selected." + "Try again!", "Numbers Do Not Match");
-            } // end outer if
+            } // end outer if*/
         } // end button clickhandler
-        */
+        
     }
 }
