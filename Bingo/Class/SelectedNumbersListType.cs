@@ -8,7 +8,7 @@ namespace Bingo.Class
 {
     public class SelectedNumbersListType
     {
-        Boolean[] usedNumList = new Boolean[75];
+        Boolean[] usedNumList = new Boolean[76];
 
         public void setUsedNumber(int rn)
         {
@@ -17,6 +17,7 @@ namespace Bingo.Class
 
         public Boolean isNumberUsed(int rn)
         {
+            Console.WriteLine("Number used: " + rn);
             if (usedNumList[rn] == true)
             {
                 rn++;

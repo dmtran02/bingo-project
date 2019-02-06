@@ -14,7 +14,7 @@ using Bingo.Class; // BE SURE TO INCLUDE CLASS FOLDER
  * Duc Tran
  * Professor Frank Friedman
  * CIS 3309 - Stage 1 Bingo Project
- * Last Updated: 1/24/2019
+ * Last Updated: 2/05/2019
  */
 
 namespace Bingo
@@ -230,8 +230,12 @@ namespace Bingo
             Random random = new Random();
             int randomIndex = random.Next(0, 4);
             selectedNumber = Convert.ToInt32(newButton[rowID, colID].Text);
-            Console.WriteLine(txtRNG.Text);
-            int nextCalledNumber = Convert.ToInt32(txtRNG.Text.Substring(1));
+
+            Console.WriteLine(randomIndex);
+            Console.WriteLine("The selectedNumber is " + selectedNumber);
+            Console.WriteLine("txtRNG Substring: " + txtRNG.Text.Substring(0, 1));
+
+            int nextCalledNumber = Convert.ToInt32(txtRNG.Text.Substring(0, 1));
 
             if (selectedNumber == nextCalledNumber)
             {
@@ -263,6 +267,7 @@ namespace Bingo
         public int convertCharToInt(char character)
         {
             string holder = character.ToString();
+            Console.WriteLine("convertCharToInt has initiated: " + holder);
             int result = int.Parse(holder);
 
             return result;
