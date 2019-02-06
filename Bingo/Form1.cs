@@ -82,7 +82,7 @@ namespace Bingo
             char[] bingoLetters = { 'B', 'I', 'N', 'G', 'O' };
             RNGType RNGObj = new RNGType();
             Random random = new Random();
-            int randomIndex = random.Next(0, 4);
+            int randomIndex = random.Next(0, 5);
             // Dynamically Creates 25 buttons on a Bingo Board 
             // Written by Bill Hall with Joe Jupin and FLF
             // This should be enough help for all of you to adapt this to your own needs
@@ -236,7 +236,7 @@ namespace Bingo
 
             // Double check that clicked on button value matches called value
             Random random = new Random();
-            int randomIndex = random.Next(0, 4);
+            int randomIndex = random.Next(0, 5);
 
             char nextColHead = bingoLetters[randomIndex];
             //int nextCalledNumber = nextNumberCalled(nextColHead);
@@ -326,7 +326,7 @@ namespace Bingo
         private void btnNoHave_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-            int randomIndex = random.Next(0, 4);
+            int randomIndex = random.Next(0, 5);
             char nextColHead = bingoLetters[randomIndex];
             int nextCalledNumber = nextNumberCalled(nextColHead);
             txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
