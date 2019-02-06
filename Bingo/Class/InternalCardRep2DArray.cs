@@ -10,11 +10,13 @@ namespace Bingo.Class
     {
         public const int BINGOSIZE = 5;
         public static int[,] bingoBoard = { };
+        public static int count = 0;
 
         public static int isWinner(int row, int col)
         {
             int result = 0;
             bingoBoard[row, col] = 1;
+            count++;
 
             return result;
         }
