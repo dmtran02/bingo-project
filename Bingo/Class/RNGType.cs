@@ -100,7 +100,7 @@ namespace Bingo.Class
 
                 while (isUnique == false)
                 {
-                    rn = RandomObj.Next(minVal, maxVal);
+                    rn = RandomObj.Next(minVal, maxVal + 1);
                     if (!Globals.selectedNumbersListObj.isNumberUsed(rn))
                     {
                         isUnique = true;

@@ -23,7 +23,14 @@ namespace Bingo
     {
 
         public char[] bingoLetters = { 'B', 'I', 'N', 'G', 'O' };
+        public char nextCalledLetter;
         public int nextCalledNumber;
+        public int countOfCalledNumbers;
+        RNGType RNGObj = new RNGType();
+        int count = 2;
+
+
+
 
         public Form1()
         {
@@ -49,12 +56,23 @@ namespace Bingo
                 createCard();
                 Console.WriteLine("Welcome the new player, " + player.name);
 
+                playTheGame();
+
+                /*
+                Random random = new Random();
+                int randomIndex = random.Next(0, 5);
+                char nextColHead = bingoLetters[randomIndex];
+                int nextCalledNumber = nextNumberCalled(nextColHead);
+                txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
+                Console.WriteLine("nextColHead: " + nextColHead);
+                Console.WriteLine("nextCalledNumber: " + nextCalledNumber);
+                */
             }
         }
 
         private void btnNo_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         // Named constants
@@ -156,11 +174,6 @@ namespace Bingo
             y += barWidth - 1;
             DrawColumnLabels();
             Globals.selectedNumbersListObj.reset();
-            char nextColHead = bingoLetters[randomIndex];
-            int nextCalledNumber = nextNumberCalled(nextColHead);
-            txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
-            Console.WriteLine("nextCalledNumber: " + nextCalledNumber);
-            Console.WriteLine("Next Number Called: " + txtRNG.Text);
         } // end createBoard
 
 
@@ -238,18 +251,18 @@ namespace Bingo
             Random random = new Random();
             int randomIndex = random.Next(0, 5);
 
-            char nextColHead = bingoLetters[randomIndex];
+            //char nextColHead = bingoLetters[randomIndex];
             //int nextCalledNumber = nextNumberCalled(nextColHead);
 
             selectedNumber = Convert.ToInt32(newButton[rowID, colID].Text);
-            Console.WriteLine("Row: " + rowID + ", Col: " + colID);
+            //Console.WriteLine("Row: " + rowID + ", Col: " + colID);
 
             //Console.WriteLine(randomIndex);
 
 
             
-            Console.WriteLine("nextCalledNumber: " + nextCalledNumber);
-            Console.WriteLine("selectedNumber: " + selectedNumber);
+            //Console.WriteLine("Button_Click nextCalledNumber: " + nextCalledNumber);
+            //Console.WriteLine("Button_Click selectedNumber: " + selectedNumber);
             
             
 
@@ -274,21 +287,11 @@ namespace Bingo
                         + "Bingos count = " + bingoCount2D  + ". Game over!");
                     Close();
                 }  // end inner if
-                else
-                {
-                    nextColHead = bingoLetters[randomIndex];
-                    nextCalledNumber = nextNumberCalled(nextColHead);
-                    txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
-                }
-
-                //playTheGame();
+                playTheGame();
             }
             else
             {
                 MessageBox.Show("Called number does not match the one in the box you selected." + "Try again!", "Numbers Do Not Match");
-                nextColHead = bingoLetters[randomIndex];
-                nextCalledNumber = nextNumberCalled(nextColHead);
-                txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
             } // end outer if*/
         } // end button clickhandler
 
@@ -304,11 +307,6 @@ namespace Bingo
         public int nextNumberCalled(char colHead)
         {
             char[] bingoLetters = { 'B', 'I', 'N', 'G', 'O' };
-            int random;
-
-            Random randomColHead = new Random();
-            //int colHeadIndex = randomColHead.Next(0,4);
-            //char colHead = bingoLetters[colHeadIndex];
 
             RNGType RNGObj = new RNGType();
 
@@ -325,13 +323,31 @@ namespace Bingo
 
         private void btnNoHave_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-            int randomIndex = random.Next(0, 5);
-            char nextColHead = bingoLetters[randomIndex];
-            int nextCalledNumber = nextNumberCalled(nextColHead);
-            txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
-
-            //return nextCalledNumber;
+            
+            playTheGame();
+            label1.Text = count.ToString();
+            count++;
         }
+
+        // Driver program to play the game
+        //    Initial call with -1 for row and column selection to start game.
+        //    Subsequent calls with row and col index selected by player.
+        // void playTheGame(int selectedRow, int selectedCol)
+        void playTheGame()
+        {
+            if (countOfCalledNumbers < MAXBINGONUMBER)
+            {
+                countOfCalledNumbers++;
+                nextCalledNumber = RNGObj.getNextUniqueRandomValue(1, MAXBINGONUMBER);
+                nextCalledLetter = bingoLetters[(nextCalledNumber - 1) / NUMBERSPERCOLUMN];
+                txtRNG.Text = nextCalledLetter + " " + nextCalledNumber.ToString();
+            }
+            else
+            {
+                MessageBox.Show("All bingo numbers called.  \nYou must have missed one or more.  \nGame over.", "All Numbers Used");
+                Close();
+            }   // end if
+        } // end playTheGame     
+        
     }
 }

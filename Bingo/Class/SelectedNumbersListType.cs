@@ -8,24 +8,18 @@ namespace Bingo.Class
 {
     public class SelectedNumbersListType
     {
-        Boolean[] usedNumList = new Boolean[76];
+        int[] usedNumList = new int[76];
 
         public void setUsedNumber(int rn)
         {
-            usedNumList[rn] = true;
+            usedNumList[rn] = rn;
         }
 
         public Boolean isNumberUsed(int rn)
         {
             Console.WriteLine("Number used: " + rn);
-            if (usedNumList[rn] == true)
+            if (usedNumList[rn] == rn)
             {
-                rn++;
-                if(rn >= 76)
-                {
-                    isNumberUsed(rn);
-                }
-                usedNumList[rn] = true;
                 return true;
             }
             return false;
@@ -33,7 +27,10 @@ namespace Bingo.Class
 
         public void reset()
         {
-            usedNumList = new Boolean[76];
+            for(int i = 0; i < usedNumList.Length; i++)
+            {
+                usedNumList[i] = 0;
+            }
         }
     }
 }

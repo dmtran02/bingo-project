@@ -9,16 +9,22 @@ namespace Bingo.Class
     class InternalCardRep2DArray
     {
         public const int BINGOSIZE = 5;
-        public bool[,] bingoBoard = { { false, false, false, false, false }, { false, false, false, false, false }, { false, false, false, false, false }, { false, false, false, false, false }, { false, false, false, false, false } };
+        public static int[,] bingoBoard = { };
 
         public static int isWinner(int row, int col)
         {
             int result = 0;
+            bingoBoard[row, col] = 1;
 
             return result;
         }
 
         public static void recordCalledNumber(int row, int col)
+        {
+
+        }
+
+        public static void checkRows()
         {
 
         }
