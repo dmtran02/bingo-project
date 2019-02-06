@@ -30,5 +30,10 @@ namespace Bingo.Class
             }
             return false;
         }
+
+        public void reset()
+        {
+            usedNumList = new Boolean[76];
+        }
     }
 }

@@ -132,6 +132,7 @@
             this.btnNoHave.TabIndex = 8;
             this.btnNoHave.Text = "Don\'t Have";
             this.btnNoHave.UseVisualStyleBackColor = true;
+            this.btnNoHave.Click += new System.EventHandler(this.btnNoHave_Click);
             // 
             // lblBingoCardTitle
             // 

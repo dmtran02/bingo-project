@@ -23,6 +23,7 @@ namespace Bingo
     {
 
         public char[] bingoLetters = { 'B', 'I', 'N', 'G', 'O' };
+        public int nextCalledNumber;
 
         public Form1()
         {
@@ -80,6 +81,8 @@ namespace Bingo
         {
             char[] bingoLetters = { 'B', 'I', 'N', 'G', 'O' };
             RNGType RNGObj = new RNGType();
+            Random random = new Random();
+            int randomIndex = random.Next(0, 4);
             // Dynamically Creates 25 buttons on a Bingo Board 
             // Written by Bill Hall with Joe Jupin and FLF
             // This should be enough help for all of you to adapt this to your own needs
@@ -152,7 +155,12 @@ namespace Bingo
             // Draw column indices at bottom of card
             y += barWidth - 1;
             DrawColumnLabels();
-            //Globals.selectedNumbersListObj.reset();
+            Globals.selectedNumbersListObj.reset();
+            char nextColHead = bingoLetters[randomIndex];
+            int nextCalledNumber = nextNumberCalled(nextColHead);
+            txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
+            Console.WriteLine("nextCalledNumber: " + nextCalledNumber);
+            Console.WriteLine("Next Number Called: " + txtRNG.Text);
         } // end createBoard
 
 
@@ -229,13 +237,24 @@ namespace Bingo
             // Double check that clicked on button value matches called value
             Random random = new Random();
             int randomIndex = random.Next(0, 4);
+
+            char nextColHead = bingoLetters[randomIndex];
+            //int nextCalledNumber = nextNumberCalled(nextColHead);
+
             selectedNumber = Convert.ToInt32(newButton[rowID, colID].Text);
+            Console.WriteLine("Row: " + rowID + ", Col: " + colID);
 
-            Console.WriteLine(randomIndex);
-            Console.WriteLine("The selectedNumber is " + selectedNumber);
-            Console.WriteLine("txtRNG Substring: " + txtRNG.Text.Substring(0, 1));
+            //Console.WriteLine(randomIndex);
 
-            int nextCalledNumber = Convert.ToInt32(txtRNG.Text.Substring(0, 1));
+
+            
+            Console.WriteLine("nextCalledNumber: " + nextCalledNumber);
+            Console.WriteLine("selectedNumber: " + selectedNumber);
+            
+            
+
+            //Console.WriteLine("Next Number Called: " + txtRNG.Text);
+
 
             if (selectedNumber == nextCalledNumber)
             {
@@ -255,22 +274,64 @@ namespace Bingo
                         + "Bingos count = " + bingoCount2D  + ". Game over!");
                     Close();
                 }  // end inner if
+                else
+                {
+                    nextColHead = bingoLetters[randomIndex];
+                    nextCalledNumber = nextNumberCalled(nextColHead);
+                    txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
+                }
 
                 //playTheGame();
             }
             else
             {
                 MessageBox.Show("Called number does not match the one in the box you selected." + "Try again!", "Numbers Do Not Match");
+                nextColHead = bingoLetters[randomIndex];
+                nextCalledNumber = nextNumberCalled(nextColHead);
+                txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
             } // end outer if*/
         } // end button clickhandler
 
         public int convertCharToInt(char character)
         {
             string holder = character.ToString();
-            Console.WriteLine("convertCharToInt has initiated: " + holder);
+            //Console.WriteLine("convertCharToInt has initiated: " + holder);
             int result = int.Parse(holder);
 
             return result;
+        }
+
+        public int nextNumberCalled(char colHead)
+        {
+            char[] bingoLetters = { 'B', 'I', 'N', 'G', 'O' };
+            int random;
+
+            Random randomColHead = new Random();
+            //int colHeadIndex = randomColHead.Next(0,4);
+            //char colHead = bingoLetters[colHeadIndex];
+
+            RNGType RNGObj = new RNGType();
+
+            int nextNumber = RNGObj.getRandomValue(colHead);
+            //Console.WriteLine("The next number created: " + colHead + nextNumber);
+
+            return nextNumber;
+        }
+
+        public void getTxtRNG(char colHead, int nextNumber)
+        {
+            txtRNG.Text = colHead.ToString() + nextNumber.ToString();
+        }
+
+        private void btnNoHave_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int randomIndex = random.Next(0, 4);
+            char nextColHead = bingoLetters[randomIndex];
+            int nextCalledNumber = nextNumberCalled(nextColHead);
+            txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
+
+            //return nextCalledNumber;
         }
     }
 }
