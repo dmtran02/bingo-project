@@ -17,7 +17,7 @@ namespace Bingo.Class
 
         public Boolean isNumberUsed(int rn)
         {
-            Console.WriteLine("Number used: " + rn);
+            //Console.WriteLine("Number used: " + rn);
             if (usedNumList[rn] == rn)
             {
                 return true;

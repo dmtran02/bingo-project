@@ -54,7 +54,7 @@ namespace Bingo
                 txtName.ReadOnly = true;
                 lblBingoCardTitle.Visible = true;
                 createCard();
-                Console.WriteLine("Welcome the new player, " + player.name);
+                //Console.WriteLine("Welcome the new player, " + player.name);
 
                 playTheGame();
 
@@ -142,6 +142,7 @@ namespace Bingo
                     {
                         newButton[row, col].Font = new Font("Arial", 10, FontStyle.Bold);
                         newButton[row, col].Text = "Free \n Space";
+                        newButton[row, col].Enabled = false;
                         newButton[row, col].BackColor = System.Drawing.Color.Orange;
                     }
                     else
@@ -149,7 +150,6 @@ namespace Bingo
                         newButton[row, col].Font = new Font("Arial", 24, FontStyle.Bold);
                         newButton[row, col].Text = RNGObj.getRandomValue(bingoLetters[col]).ToString();
                     }  // end if    
-                    newButton[row, col].Enabled = true;
                     newButton[row, col].Name = "btn" + row.ToString() + col.ToString();
 
                     // Associates the same event handler with each of the buttons generated
@@ -174,6 +174,7 @@ namespace Bingo
             y += barWidth - 1;
             DrawColumnLabels();
             Globals.selectedNumbersListObj.reset();
+            newButton[2, 2].Enabled = false;
         } // end createBoard
 
 
@@ -272,7 +273,7 @@ namespace Bingo
             if (selectedNumber == nextCalledNumber)
             {
                 newButton[rowID, colID].BackColor = System.Drawing.Color.Orange;
-                InternalCardRep2DArray.recordCalledNumber(rowID, colID);
+                //InternalCardRep2DArray.recordCalledNumber(rowID, colID);
                 //internalCardRepWO2DArray.recordCalledNumber(rowID, colID);
                 Globals.selectedNumbersListObj.setUsedNumber(selectedNumber);
 
