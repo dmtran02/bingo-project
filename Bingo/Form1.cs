@@ -22,6 +22,10 @@ namespace Bingo
     public partial class Form1 : Form
     {
 
+        /*
+         * Variables specifically for this class for the means of multiple methods and counters.
+         */
+
         public char[] bingoLetters = { 'B', 'I', 'N', 'G', 'O' };
         public char nextCalledLetter;
         public int nextCalledNumber;
@@ -29,13 +33,19 @@ namespace Bingo
         RNGType RNGObj = new RNGType();
         int count = 2;
 
-
-
-
         public Form1()
         {
             InitializeComponent();
         }       
+
+        /*
+         * Event handler for 'Yes' click.
+         * 
+         *  -If no name is present, a message box shows requesting the user to enter a name.
+         *  -Otherwise, the form welcomes the user and stores his/her name in the Player class.
+         *   The form then sets appropriate attribute values to several controls, creates the 
+         *   cards necessary for the BINGO game and calls playTheGame();
+         */
 
         private void btnYes_Click(object sender, EventArgs e)
         {
@@ -57,18 +67,12 @@ namespace Bingo
                 //Console.WriteLine("Welcome the new player, " + player.name);
 
                 playTheGame();
-
-                /*
-                Random random = new Random();
-                int randomIndex = random.Next(0, 5);
-                char nextColHead = bingoLetters[randomIndex];
-                int nextCalledNumber = nextNumberCalled(nextColHead);
-                txtRNG.Text = nextColHead.ToString() + nextCalledNumber.ToString();
-                Console.WriteLine("nextColHead: " + nextColHead);
-                Console.WriteLine("nextCalledNumber: " + nextCalledNumber);
-                */
             }
         }
+
+        /*
+         * Event handler for exitting the form
+         */
 
         private void btnNo_Click(object sender, EventArgs e)
         {
@@ -256,19 +260,7 @@ namespace Bingo
             //int nextCalledNumber = nextNumberCalled(nextColHead);
 
             selectedNumber = Convert.ToInt32(newButton[rowID, colID].Text);
-            //Console.WriteLine("Row: " + rowID + ", Col: " + colID);
-
-            //Console.WriteLine(randomIndex);
-
-
-            
-            //Console.WriteLine("Button_Click nextCalledNumber: " + nextCalledNumber);
-            //Console.WriteLine("Button_Click selectedNumber: " + selectedNumber);
-            
-            
-
-            //Console.WriteLine("Next Number Called: " + txtRNG.Text);
-
+           
 
             if (selectedNumber == nextCalledNumber)
             {
@@ -296,6 +288,11 @@ namespace Bingo
             } // end outer if*/
         } // end button clickhandler
 
+        /*
+         * Converts the given charaacter to an integer for the naming of buttons 
+         * during the creation of the BINGO cards.
+         */
+
         public int convertCharToInt(char character)
         {
             string holder = character.ToString();
@@ -305,22 +302,13 @@ namespace Bingo
             return result;
         }
 
-        public int nextNumberCalled(char colHead)
-        {
-            char[] bingoLetters = { 'B', 'I', 'N', 'G', 'O' };
-
-            RNGType RNGObj = new RNGType();
-
-            int nextNumber = RNGObj.getRandomValue(colHead);
-            //Console.WriteLine("The next number created: " + colHead + nextNumber);
-
-            return nextNumber;
-        }
-
-        public void getTxtRNG(char colHead, int nextNumber)
-        {
-            txtRNG.Text = colHead.ToString() + nextNumber.ToString();
-        }
+        /*
+         * Event handler for NoHave button that keeps track of the number of numbers skipped
+         * during the game. 
+         * 
+         * This method also calls playTheGame() in order retrieve the next called letter and number 
+         * and set it into txtRNG text box as the next card called.
+         */
 
         private void btnNoHave_Click(object sender, EventArgs e)
         {
@@ -349,6 +337,5 @@ namespace Bingo
                 Close();
             }   // end if
         } // end playTheGame     
-        
     }
 }
