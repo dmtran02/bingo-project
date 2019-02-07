@@ -5,6 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * Duc Tran
+ * Professor Frank Friedman
+ * CIS 3309 - Final Submission Bingo Project
+ * Last Updated: 2/06/2019
+ */
+
 
 namespace Bingo.Class
 {

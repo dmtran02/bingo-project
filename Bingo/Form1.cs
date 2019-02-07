@@ -13,8 +13,8 @@ using Bingo.Class; // BE SURE TO INCLUDE CLASS FOLDER
 /*
  * Duc Tran
  * Professor Frank Friedman
- * CIS 3309 - Stage 1 Bingo Project
- * Last Updated: 2/05/2019
+ * CIS 3309 - Final Submission Bingo Project
+ * Last Updated: 2/06/2019
  */
 
 namespace Bingo
